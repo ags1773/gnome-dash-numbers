@@ -6,11 +6,20 @@ GNOME Shell natively supports launching and switching to pinned apps using Super
 
 ## Features & Customization
 
-**Colors (Light & Dark Mode):** Set background color, text color, and border color based on your system theme.
+**Colors:**
+Set the following for light and dark mode
 
-**Shape & Geometry:** you can chnge the border radius and width to transform badges into sharp squares, continuous squircles, or perfect circles.
+- background color with transparency
+- text color
+- border color
 
-**Size & Spacing:** Adjust font size alongside horizontal and vertical padding.
+**Shape & Geometry:**
+Transform badges into sharp squares, continuous squircles, or perfect circles using border radius. Border width can also be changed
+
+**Size & Spacing:**
+
+- font size
+- horizontal and vertical padding
 
 **Positioning**: Shift badges horizontally and vertically to position them exactly where you want relative to each dock icon.
 
@@ -44,4 +53,5 @@ gnome-extensions install --force dash-numbers@ags1773.github.io.shell-extension.
 ```
 
 4. Enable the extension
-   Log out and log back in (wayland) and enable the extension
+
+Log out and log back in (wayland) and enable the extension
