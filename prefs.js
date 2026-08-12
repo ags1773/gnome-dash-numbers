@@ -39,7 +39,7 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
         title,
         subtitle: subtitle || null,
       });
-      
+
       const rgba = new Gdk.RGBA();
       rgba.parse(settings.get_string(key));
 
@@ -71,12 +71,36 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     page.add(colourGroup);
 
     const colourSettings = [
-      ["Light Mode Background", "Background color used when light theme is active", "bg-color-light"],
-      ["Light Mode Text", "Text color used when light theme is active", "text-color-light"],
-      ["Light Mode Border", "Border color used when light theme is active", "border-color-light"],
-      ["Dark Mode Background", "Background color used when dark theme is active", "bg-color-dark"],
-      ["Dark Mode Text", "Text color used when dark theme is active", "text-color-dark"],
-      ["Dark Mode Border", "Border color used when dark theme is active", "border-color-dark"],
+      [
+        "Light Mode Background",
+        "Background colour used when light theme is active",
+        "bg-color-light",
+      ],
+      [
+        "Light Mode Text",
+        "Text colour used when light theme is active",
+        "text-color-light",
+      ],
+      [
+        "Light Mode Border",
+        "Border colour used when light theme is active",
+        "border-color-light",
+      ],
+      [
+        "Dark Mode Background",
+        "Background colour used when dark theme is active",
+        "bg-color-dark",
+      ],
+      [
+        "Dark Mode Text",
+        "Text colour used when dark theme is active",
+        "text-color-dark",
+      ],
+      [
+        "Dark Mode Border",
+        "Border colour used when dark theme is active",
+        "border-color-dark",
+      ],
     ];
 
     colourSettings.forEach(([title, subtitle, key]) =>
@@ -84,23 +108,53 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     );
 
     // Layout & Sizing Group
-    const sizeGroup = new Adw.PreferencesGroup({ title: "Sizing" });
+    const sizeGroup = new Adw.PreferencesGroup({ title: "Layout/Sizing" });
     page.add(sizeGroup);
 
     sizeGroup.add(
-      createSpinRow("Font Size (px)", "Adjust the text size of the numbers", "font-size", 8, 40)
+      createSpinRow(
+        "Font Size (px)",
+        "Adjust the text size of the numbers",
+        "font-size",
+        8,
+        32,
+      ),
     );
     sizeGroup.add(
-      createSpinRow("X-Axis Offset (px)", "Horizontal shift relative to default position", "x-offset", -200, 200)
+      createSpinRow(
+        "Horizontal Offset (px)",
+        "Negative values will shift numbers to left relative to the default position",
+        "x-offset",
+        -100,
+        100,
+      ),
     );
     sizeGroup.add(
-      createSpinRow("Y-Axis Offset (px)", "Vertical shift relative to default position", "y-offset", -200, 200)
+      createSpinRow(
+        "Vertical Offset (px)",
+        "Negative values will shift numbers to the top relative to the default position",
+        "y-offset",
+        -100,
+        100,
+      ),
     );
     sizeGroup.add(
-      createSpinRow("Horizontal Padding (px)", "Internal padding on left and right sides", "x-padding", 0, 40)
+      createSpinRow(
+        "Horizontal Padding (px)",
+        "Internal padding on left and right sides",
+        "x-padding",
+        0,
+        40,
+      ),
     );
     sizeGroup.add(
-      createSpinRow("Vertical Padding (px)", "Internal padding on top and bottom sides", "y-padding", 0, 40)
+      createSpinRow(
+        "Vertical Padding (px)",
+        "Internal padding on top and bottom sides",
+        "y-padding",
+        0,
+        40,
+      ),
     );
 
     // Border Styling Group
@@ -108,10 +162,22 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     page.add(borderGroup);
 
     borderGroup.add(
-      createSpinRow("Border Width (px)", "Thickness of the element border", "border-width", 0, 20)
+      createSpinRow(
+        "Border Width (px)",
+        "Thickness of the border",
+        "border-width",
+        0,
+        10,
+      ),
     );
     borderGroup.add(
-      createSpinRow("Border Radius (px)", "Corner rounding amount", "border-radius", 0, 50)
+      createSpinRow(
+        "Border Radius (px)",
+        "Corner rounding amount. Zero will make it square",
+        "border-radius",
+        0,
+        50,
+      ),
     );
     borderGroup.add(
       createSwitchRow(
@@ -125,11 +191,10 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     const resetGroup = new Adw.PreferencesGroup();
     page.add(resetGroup);
 
-    const resetActionRow = new Adw.ActionRow({
-      title: "Reset settings",
-      subtitle: "Restore all preferences to their original factory values",
+    const resetRow = new Adw.ActionRow({
+      title: "Reset all settings to default values",
     });
-    
+
     const resetButton = new Gtk.Button({
       label: "Reset to Defaults",
       valign: Gtk.Align.CENTER,
@@ -137,26 +202,9 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     });
 
     resetButton.connect("clicked", () => {
-      const keysToReset = [
-        "bg-color-light",
-        "text-color-light",
-        "border-color-light",
-        "bg-color-dark",
-        "text-color-dark",
-        "border-color-dark",
-        "font-size",
-        "x-offset",
-        "y-offset",
-        "x-padding",
-        "y-padding",
-        "border-width",
-        "border-radius",
-        "neon-border",
-      ];
+      settings.list_keys().forEach((key) => settings.reset(key));
 
-      keysToReset.forEach((key) => settings.reset(key));
-
-      // Refresh colour picker buttons manually
+      // Manually Refresh colour picker UI buttons
       Object.entries(colourButtons).forEach(([key, btn]) => {
         const rgba = new Gdk.RGBA();
         rgba.parse(settings.get_string(key));
@@ -168,8 +216,8 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
       });
     });
 
-    resetActionRow.add_suffix(resetButton);
-    resetGroup.add(resetActionRow);
+    resetRow.add_suffix(resetButton);
+    resetGroup.add(resetRow);
 
     window.add(page);
   }
