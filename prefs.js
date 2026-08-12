@@ -9,9 +9,10 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     const settings = this.getSettings();
     const page = new Adw.PreferencesPage();
 
-    const createSpinRow = (title, key, lower, upper, step = 1) => {
+    const createSpinRow = (title, subtitle, key, lower, upper, step = 1) => {
       const row = new Adw.SpinRow({
         title,
+        subtitle: subtitle || null,
         adjustment: new Gtk.Adjustment({
           lower,
           upper,
@@ -33,8 +34,12 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
 
     const colourButtons = {};
 
-    const addColourRow = (group, title, key) => {
-      const row = new Adw.ActionRow({ title });
+    const addColourRow = (group, title, subtitle, key) => {
+      const row = new Adw.ActionRow({
+        title,
+        subtitle: subtitle || null,
+      });
+      
       const rgba = new Gdk.RGBA();
       rgba.parse(settings.get_string(key));
 
@@ -66,40 +71,52 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     page.add(colourGroup);
 
     const colourSettings = [
-      ["Light Mode Background", "bg-color-light"],
-      ["Light Mode Text", "text-color-light"],
-      ["Light Mode Border", "border-color-light"],
-      ["Dark Mode Background", "bg-color-dark"],
-      ["Dark Mode Text", "text-color-dark"],
-      ["Dark Mode Border", "border-color-dark"],
+      ["Light Mode Background", "Background color used when light theme is active", "bg-color-light"],
+      ["Light Mode Text", "Text color used when light theme is active", "text-color-light"],
+      ["Light Mode Border", "Border color used when light theme is active", "border-color-light"],
+      ["Dark Mode Background", "Background color used when dark theme is active", "bg-color-dark"],
+      ["Dark Mode Text", "Text color used when dark theme is active", "text-color-dark"],
+      ["Dark Mode Border", "Border color used when dark theme is active", "border-color-dark"],
     ];
 
-    colourSettings.forEach(([title, key]) =>
-      addColourRow(colourGroup, title, key),
+    colourSettings.forEach(([title, subtitle, key]) =>
+      addColourRow(colourGroup, title, subtitle, key),
     );
 
     // Layout & Sizing Group
     const sizeGroup = new Adw.PreferencesGroup({ title: "Sizing" });
     page.add(sizeGroup);
 
-    sizeGroup.add(createSpinRow("Font Size (px)", "font-size", 8, 40));
-    sizeGroup.add(createSpinRow("X-Axis Offset (px)", "x-offset", -200, 200));
-    sizeGroup.add(createSpinRow("Y-Axis Offset (px)", "y-offset", -200, 200));
-    sizeGroup.add(createSpinRow("Horizontal Padding (px)", "x-padding", 0, 40));
-    sizeGroup.add(createSpinRow("Vertical Padding (px)", "y-padding", 0, 40));
+    sizeGroup.add(
+      createSpinRow("Font Size (px)", "Adjust the text size of the numbers", "font-size", 8, 40)
+    );
+    sizeGroup.add(
+      createSpinRow("X-Axis Offset (px)", "Horizontal shift relative to default position", "x-offset", -200, 200)
+    );
+    sizeGroup.add(
+      createSpinRow("Y-Axis Offset (px)", "Vertical shift relative to default position", "y-offset", -200, 200)
+    );
+    sizeGroup.add(
+      createSpinRow("Horizontal Padding (px)", "Internal padding on left and right sides", "x-padding", 0, 40)
+    );
+    sizeGroup.add(
+      createSpinRow("Vertical Padding (px)", "Internal padding on top and bottom sides", "y-padding", 0, 40)
+    );
 
     // Border Styling Group
     const borderGroup = new Adw.PreferencesGroup({ title: "Border Styling" });
     page.add(borderGroup);
 
-    borderGroup.add(createSpinRow("Border Width (px)", "border-width", 0, 20));
     borderGroup.add(
-      createSpinRow("Border Radius (px)", "border-radius", 0, 50),
+      createSpinRow("Border Width (px)", "Thickness of the element border", "border-width", 0, 20)
+    );
+    borderGroup.add(
+      createSpinRow("Border Radius (px)", "Corner rounding amount", "border-radius", 0, 50)
     );
     borderGroup.add(
       createSwitchRow(
         "Enable Neon Glow",
-        "Requires Border Width > 0",
+        "Adds a glowing outline effect (Requires Border Width > 0)",
         "neon-border",
       ),
     );
@@ -108,7 +125,11 @@ export default class DashNumbersPrefs extends ExtensionPreferences {
     const resetGroup = new Adw.PreferencesGroup();
     page.add(resetGroup);
 
-    const resetActionRow = new Adw.ActionRow({ title: "Reset settings" });
+    const resetActionRow = new Adw.ActionRow({
+      title: "Reset settings",
+      subtitle: "Restore all preferences to their original factory values",
+    });
+    
     const resetButton = new Gtk.Button({
       label: "Reset to Defaults",
       valign: Gtk.Align.CENTER,
