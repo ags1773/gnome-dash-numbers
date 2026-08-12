@@ -1,7 +1,7 @@
 {
-  "uuid": "example@gjs.guide",
-  "name": "Example Extension",
-  "description": "An example extension",
+  "name": "Dash Numbers",
+  "description": "Adds number overlays on pinned dash icons to assist with Super+Number shortcuts",
+  "uuid": "dash-numbers@local",
   "shell-version": ["48", "49", "50"],
-  "url": "https://gjs.guide/extensions"
+  "settings-schema": "org.gnome.shell.extensions.dash-numbers"
 }

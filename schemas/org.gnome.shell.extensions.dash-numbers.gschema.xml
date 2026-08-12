@@ -1,11 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema
-    id="org.gnome.shell.extensions.example"
-    path="/org/gnome/shell/extensions/example/"
+    id="org.gnome.shell.extensions.dash-numbers"
+    path="/org/gnome/shell/extensions/dash-numbers/"
   >
-    <key name="show-indicator" type="b">
-      <default>true</default>
+    <key name="bg-color-light" type="s">
+      <default>'rgba(255, 255, 255, 0.9)'</default>
+      <summary>Light Background Colour</summary>
+    </key>
+    <key name="text-color-light" type="s">
+      <default>'rgba(0, 0, 0, 1.0)'</default>
+      <summary>Light Text Colour</summary>
+    </key>
+    <key name="border-color-light" type="s">
+      <default>'rgba(0, 255, 255, 1.0)'</default>
+      <summary>Light Border Colour</summary>
+    </key>
+    <key name="bg-color-dark" type="s">
+      <default>'rgba(0, 0, 0, 0.7)'</default>
+      <summary>Dark Background Colour</summary>
+    </key>
+    <key name="text-color-dark" type="s">
+      <default>'rgba(255, 255, 255, 1.0)'</default>
+      <summary>Dark Text Colour</summary>
+    </key>
+    <key name="border-color-dark" type="s">
+      <default>'rgba(0, 255, 255, 1.0)'</default>
+      <summary>Dark Border Colour</summary>
+    </key>
+    <key name="font-size" type="i">
+      <default>13</default>
+      <summary>Font Size</summary>
+    </key>
+    <key name="x-offset" type="i">
+      <default>0</default>
+      <summary>X Offset</summary>
+    </key>
+    <key name="y-offset" type="i">
+      <default>0</default>
+      <summary>Y Offset</summary>
+    </key>
+    <key name="border-radius" type="i">
+      <default>25</default>
+      <summary>Border Radius</summary>
+    </key>
+    <key name="x-padding" type="i">
+      <default>2</default>
+      <summary>Horizontal Padding</summary>
+    </key>
+    <key name="y-padding" type="i">
+      <default>2</default>
+      <summary>Vertical Padding</summary>
+    </key>
+    <key name="border-width" type="i">
+      <default>1</default>
+      <summary>Border Width</summary>
+    </key>
+    <key name="neon-border" type="b">
+      <default>false</default>
+      <summary>Neon Border Toggle</summary>
     </key>
   </schema>
 </schemalist>
