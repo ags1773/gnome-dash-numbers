@@ -1,7 +1,8 @@
 {
   "name": "Dash Numbers",
   "description": "Adds number overlays on pinned dash icons to assist with Super+Number shortcuts",
-  "uuid": "dash-numbers@local",
+  "uuid": "dash-numbers@ags1773.github.io",
   "shell-version": ["48", "49", "50"],
-  "settings-schema": "org.gnome.shell.extensions.dash-numbers"
+  "settings-schema": "org.gnome.shell.extensions.dash-numbers",
+  "url": "https://github.com/ags1773/gnome-dash-numbers"
 }
