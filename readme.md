@@ -25,12 +25,15 @@ Transform badges into sharp squares, continuous squircles, or perfect circles us
 
 **Neon Border Glow:** Enable a subtle outer glow on badge borders to give your dock a high-contrast or futuristic accent.
 
-![Dark mode screenshot](assets/screenshot1.png)
-![Light mode screenshot](assets/screenshot2.png)
+![screenshot](assets/ss3.png)
+![screenshot](assets/ss4.png)
+![screenshot](assets/ss5.png)
+![screenshot](assets/ss1.png)
+![screenshot](assets/ss2.png)
 
 ## Installation
 
-The easiest way to install this extension is from [extensions.gnome.org](https://extensions.gnome.org/) once published. But if you wish to install from source
+The easiest way to install this extension is from [extensions.gnome.org](https://extensions.gnome.org/extension/10687/dash-numbers/). But if you wish to install from source
 
 1. clone the repo
 
@@ -54,4 +57,4 @@ gnome-extensions install --force dash-numbers@ags1773.github.io.shell-extension.
 
 4. Enable the extension
 
-Log out and log back in (wayland) and enable the extension
+   Log out and log back in (wayland) and enable the extension
