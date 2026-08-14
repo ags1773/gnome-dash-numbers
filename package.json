@@ -1,0 +1,43 @@
+{
+  "name": "gnome-dash-numbers",
+  "version": "1.0.0",
+  "description": "A lightweight GNOME Shell extension that adds number badges (1–9) to pinned applications on the native GNOME Dash",
+  "keywords": [
+    "GNOME",
+    "extension"
+  ],
+  "homepage": "https://github.com/ags1773/gnome-dash-numbers#readme",
+  "bugs": {
+    "url": "https://github.com/ags1773/gnome-dash-numbers/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ags1773/gnome-dash-numbers.git"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Amogh S",
+  "type": "module",
+  "main": "extension.js",
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "copy-assets": "cp src/metadata.json src/stylesheet.css dist/ && mkdir -p dist/schemas && cp src/schemas/*.xml dist/schemas/",
+    "compile-schemas": "glib-compile-schemas dist/schemas/",
+    "build:js": "esbuild src/extension.ts src/prefs.ts --bundle --outdir=dist --format=esm --platform=neutral --target=es2022 --external:gi:* --external:resource://*",
+    "build": "npm run clean && npm run build:js && npm run copy-assets && npm run compile-schemas"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "esbuild": "0.28.2",
+    "eslint": "^10.8.1",
+    "globals": "^17.11.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@girs/gjs": "^4.1.0",
+    "@girs/gnome-shell": "^50.0.4"
+  }
+}

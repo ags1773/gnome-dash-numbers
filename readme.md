@@ -25,11 +25,11 @@ Transform badges into sharp squares, continuous squircles, or perfect circles us
 
 **Neon Border Glow:** Enable a subtle outer glow on badge borders to give your dock a high-contrast or futuristic accent.
 
-![screenshot](assets/ss3.png)
-![screenshot](assets/ss4.png)
-![screenshot](assets/ss5.png)
-![screenshot](assets/ss1.png)
-![screenshot](assets/ss2.png)
+![screenshot](documentation-assets/ss3.png)
+![screenshot](documentation-assets/ss4.png)
+![screenshot](documentation-assets/ss5.png)
+![screenshot](documentation-assets/ss1.png)
+![screenshot](documentation-assets/ss2.png)
 
 ## Installation
 

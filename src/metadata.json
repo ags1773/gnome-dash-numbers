@@ -4,5 +4,6 @@
   "uuid": "dash-numbers@ags1773.github.io",
   "shell-version": ["48", "49", "50"],
   "settings-schema": "org.gnome.shell.extensions.dash-numbers",
-  "url": "https://github.com/ags1773/gnome-dash-numbers"
+  "url": "https://github.com/ags1773/gnome-dash-numbers",
+  "license": "GPL-3.0-or-later"
 }
